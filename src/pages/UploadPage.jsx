@@ -80,6 +80,10 @@ export default function UploadPage() {
     }
   }
 
+  const openFilePicker = () => {
+    fileInputRef.current?.click()
+  }
+
   return (
     <section className="panel upload-panel" id="upload">
       <header className="panel__header">
@@ -101,9 +105,13 @@ export default function UploadPage() {
       <form className="upload-form" onSubmit={handleUpload}>
         <div
           className={`dropzone ${isDragging ? 'is-dragging' : ''}`}
+          onClick={openFilePicker}
           onDragOver={(e) => { e.preventDefault(); setIsDragging(true) }}
           onDragLeave={() => setIsDragging(false)}
           onDrop={(e) => { e.preventDefault(); setIsDragging(false); addFiles(e.dataTransfer.files) }}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openFilePicker() }}
         >
           <div className="dropzone__icon" aria-hidden="true">
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,20 +121,19 @@ export default function UploadPage() {
             </svg>
           </div>
           <input
-            id="photo-upload"
             ref={fileInputRef}
             className="file-input"
             type="file"
-            accept="image/*,video/*,.heic,.heif"
+            accept="image/*,video/*"
             multiple
             onChange={(e) => { addFiles(e.target.files); e.target.value = '' }}
           />
-          <label htmlFor="photo-upload">
-            <span className="dropzone__title">Drag & drop your photos or videos</span>
+          <div className="dropzone__text">
+            <span className="dropzone__title">Tap to choose photos or videos</span>
             <span className="dropzone__hint">
-              or tap to choose from your device
+              or drag & drop from your computer
             </span>
-          </label>
+          </div>
         </div>
 
         <div className="file-list">

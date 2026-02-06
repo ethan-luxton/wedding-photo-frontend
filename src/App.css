@@ -376,10 +376,10 @@
   opacity: 0.8;
 }
 
-.dropzone label {
+.dropzone__text {
   display: grid;
   gap: 0.4rem;
-  cursor: pointer;
+  pointer-events: none;
 }
 
 .dropzone__title {
@@ -396,13 +396,14 @@
 
 .file-input {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  border: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: 0;
 }
 
 .file-list {

@@ -84,6 +84,18 @@ export default function UploadPage() {
     fileInputRef.current?.click()
   }
 
+  const handleFileSelection = (event) => {
+    const pickedFiles = Array.from(event.target?.files || [])
+    if (pickedFiles.length) {
+      addFiles(pickedFiles)
+    }
+
+    // Delay reset slightly so iOS Safari fully commits the selected files first.
+    setTimeout(() => {
+      if (event.target) event.target.value = ''
+    }, 0)
+  }
+
   return (
     <section className="panel upload-panel" id="upload">
       <header className="panel__header">
@@ -126,7 +138,8 @@ export default function UploadPage() {
             type="file"
             accept="image/*,video/*"
             multiple
-            onChange={(e) => { addFiles(e.target.files); e.target.value = '' }}
+            onChange={handleFileSelection}
+            onInput={handleFileSelection}
           />
           <div className="dropzone__text">
             <span className="dropzone__title">Tap to choose photos or videos</span>

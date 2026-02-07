@@ -18,7 +18,24 @@ export default function GalleryPage() {
     setIsFetching(true)
     setFetchError('')
     try {
-      const response = await fetch(LIST_ENDPOINT)
+      const endpoint = (() => {
+        try {
+          const url = new URL(LIST_ENDPOINT, window.location.origin)
+          url.searchParams.set('_t', String(Date.now()))
+          return url.toString()
+        } catch {
+          const separator = LIST_ENDPOINT.includes('?') ? '&' : '?'
+          return `${LIST_ENDPOINT}${separator}_t=${Date.now()}`
+        }
+      })()
+
+      const response = await fetch(endpoint, {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache',
+          Pragma: 'no-cache',
+        },
+      })
       if (!response.ok) {
         throw new Error('Unable to fetch photos')
       }

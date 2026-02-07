@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Karla:wght@300;400;500;600&family=Pinyon+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
 :root {
   font-family: var(--font-body);
@@ -9,27 +9,26 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
-  --font-body: 'Karla', 'Helvetica Neue', sans-serif;
-  --font-script: 'Pinyon Script', cursive;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-hero: 'Great Vibes', 'Allura', cursive;
+  --font-body: 'Manrope', 'Segoe UI', sans-serif;
+  --font-script: 'Allura', cursive;
 
-  --bg: #fbfcfb;
-  --bg-card: #ffffff;
-  --ink: #2c3530;
-  --ink-soft: #5e6e62;
-  --ink-faint: #8a9a8e;
-  --lavender: #8b6eaf;
-  --lavender-soft: #a88bc7;
-  --sage: #5e8a62;
-  --sage-bright: #6fa075;
-  --sage-soft: #8ead8e;
-  --pink: #b8728a;
-  --pink-soft: #d4a0b4;
-  --cream: #fafcfa;
-  --border: rgba(90, 110, 90, 0.1);
-  --border-hover: rgba(90, 110, 90, 0.2);
-  --shadow: rgba(40, 60, 45, 0.08);
-  --shadow-lg: rgba(40, 60, 45, 0.12);
+  --bg: #f8f3ec;
+  --bg-soft: #fdfaf6;
+  --card: rgba(255, 252, 248, 0.86);
+  --card-strong: #fffaf5;
+  --ink: #302620;
+  --ink-soft: #5d5248;
+  --ink-faint: #8d8177;
+  --accent: #c8926b;
+  --accent-strong: #b1764e;
+  --sage: #6b7f71;
+  --rose: #b18379;
+  --border: rgba(137, 105, 80, 0.2);
+  --border-strong: rgba(137, 105, 80, 0.35);
+  --shadow-sm: 0 12px 28px rgba(66, 42, 24, 0.07);
+  --shadow-lg: 0 24px 48px rgba(66, 42, 24, 0.12);
 
   color: var(--ink);
   background-color: var(--bg);
@@ -45,58 +44,22 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  color: var(--ink);
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(142, 173, 142, 0.08), transparent),
-    radial-gradient(ellipse 60% 40% at 85% 100%, rgba(168, 139, 199, 0.05), transparent),
-    radial-gradient(ellipse 50% 35% at 10% 60%, rgba(142, 173, 142, 0.06), transparent),
-    var(--bg);
+    radial-gradient(1000px 600px at 20% -10%, rgba(177, 131, 121, 0.12), transparent 70%),
+    radial-gradient(900px 520px at 100% 0%, rgba(107, 127, 113, 0.1), transparent 65%),
+    linear-gradient(180deg, #f9f4ee 0%, #f4ece2 100%);
   overflow-x: hidden;
 }
 
-/* Floating petals */
-body::before,
-body::after {
+body::before {
   content: '';
   position: fixed;
-  pointer-events: none;
-  z-index: 0;
-}
-
-body::before {
-  width: 100%;
-  height: 100%;
   inset: 0;
-  background-image:
-    radial-gradient(circle at 15% 20%, rgba(142, 173, 142, 0.12) 0 3px, transparent 4px),
-    radial-gradient(circle at 82% 15%, rgba(168, 139, 199, 0.08) 0 2px, transparent 3px),
-    radial-gradient(circle at 45% 80%, rgba(184, 114, 138, 0.06) 0 4px, transparent 5px),
-    radial-gradient(circle at 70% 65%, rgba(142, 173, 142, 0.08) 0 3px, transparent 4px),
-    radial-gradient(circle at 25% 55%, rgba(168, 139, 199, 0.05) 0 2px, transparent 3px),
-    radial-gradient(circle at 90% 45%, rgba(142, 173, 142, 0.07) 0 2px, transparent 3px);
-  background-size: 300px 300px;
-  animation: driftParticles 30s linear infinite;
-}
-
-body::after {
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background-image:
-    radial-gradient(circle, rgba(142, 173, 142, 0.05) 1px, transparent 1px),
-    radial-gradient(circle, rgba(168, 139, 199, 0.03) 1px, transparent 1px);
-  background-size: 80px 80px, 120px 120px;
-  animation: driftStars 60s linear infinite;
-}
-
-@keyframes driftParticles {
-  from { transform: translateY(0); }
-  to { transform: translateY(-300px); }
-}
-
-@keyframes driftStars {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.45), transparent 55%);
+  opacity: 0.45;
+  z-index: 0;
 }
 
 #root {
@@ -115,29 +78,29 @@ img {
   max-width: 100%;
 }
 
-button {
+button,
+input {
   font-family: inherit;
 }
 
 ::selection {
-  background: rgba(94, 138, 98, 0.2);
+  background: rgba(200, 146, 107, 0.25);
   color: var(--ink);
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg);
+  background: rgba(255, 255, 255, 0.45);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(90, 110, 90, 0.15);
-  border-radius: 4px;
+  background: rgba(137, 105, 80, 0.26);
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(90, 110, 90, 0.25);
+  background: rgba(137, 105, 80, 0.36);
 }

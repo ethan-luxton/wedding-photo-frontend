@@ -1,5 +1,4 @@
 import {
-  Link,
   NavLink,
   Navigate,
   Route,
@@ -31,22 +30,21 @@ function App() {
       <header className="hero">
         <div className="hero__glow" aria-hidden="true" />
         <div className="hero__content">
-          <span className="hero__script">Welcome to</span>
-          <h1 className="hero__title">Our Wedding</h1>
+          <span className="hero__title">Welcome to</span>
+          <h1 className="hero__title">
+            <span className="hero__title">The Wedding of</span>
+            <span className="hero__title-names">
+              <span>Victoria Poston and</span>
+              <span className="hero__title"></span>
+              <span>Ethan Luxton</span>
+            </span>
+          </h1>
           <div className="hero__line" aria-hidden="true" />
           <p className="hero__subtitle">
             {isGallery
               ? 'Every photo from friends & family lives together in this gallery.'
               : 'Help us relive the magic. Share your favorite moments from our celebration.'}
           </p>
-          <div className="hero__actions">
-            <Link className={`btn ${isGallery ? 'secondary' : 'primary'}`} to="/">
-              Upload
-            </Link>
-            <Link className={`btn ${isGallery ? 'primary' : 'ghost'}`} to="/gallery">
-              View Gallery
-            </Link>
-          </div>
         </div>
         <div className="hero__rings" aria-hidden="true">
           <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
@@ -119,7 +117,7 @@ function App() {
               </svg>
             </div>
             <h3>Keep It Cozy</h3>
-            <p>This gallery is meant for invited wedding guests only.</p>
+            <p>This gallery is meant for invited wedding guests and wedding moments only.</p>
           </div>
         </div>
       </section>

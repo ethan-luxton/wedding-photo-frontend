@@ -9,6 +9,7 @@ export default function UploadPage() {
   const [uploadError, setUploadError] = useState('')
   const [uploadSuccess, setUploadSuccess] = useState('')
   const fileInputRef = useRef(null)
+  const lastSelectionKeyRef = useRef('')
 
   const totalSize = files.reduce((sum, f) => sum + f.size, 0)
 
@@ -86,7 +87,18 @@ export default function UploadPage() {
 
   const handleFileSelection = (event) => {
     const pickedFiles = Array.from(event.target?.files || [])
+    const selectionKey = pickedFiles
+      .map((file) => `${file.name}:${file.size}:${file.lastModified}`)
+      .join('|')
+
+    // iOS Safari may fire both input and change for the same picker action.
+    if (selectionKey && selectionKey === lastSelectionKeyRef.current) {
+      if (event.target) event.target.value = ''
+      return
+    }
+
     if (pickedFiles.length) {
+      lastSelectionKeyRef.current = selectionKey
       addFiles(pickedFiles)
     }
 
